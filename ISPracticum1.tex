@@ -1,0 +1,146 @@
+% Practicum IS
+\documentclass[]{article}
+\usepackage{enumerate}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fullpage}
+
+\title{Practicum IS 1}
+\author{}
+\date{}
+\begin{document}
+
+  \maketitle
+  \subsection*{1}
+  \begin{enumerate}[a]
+    \item Herschrijven
+    \begin{enumerate}[i]
+      \item $ \forall vis : typeOf(vis, zoogdier) $
+      \begin{itemize}
+        \item $typeOf(x,y) $ geeft aan of $x$ van het type $y$ is (hier: of $vis$ een $zoogdier$ is)
+        \item $zoogdier$ is een constante voor het type zoogdier
+      \end{itemize}
+      \item $ \forall vis, \exists y : heeft(vis, y) \land typeOf(y,staart) $
+      \begin{itemize}
+        \item $heeft(x,y) $ geeft aan of $x$ $y$ heeft
+        \item $staart$ is een constante om het type staart aan te geven
+      \end{itemize}
+      \item $\forall x : heeft(x,griep) \longrightarrow heeft(x,koorts) $
+      \begin{itemize}
+        \item $griep$ is een constante om griep aan te geven
+        \item $koorts$ is een constante om koorts aan te geven
+      \end{itemize} % iv
+      \item $ \forall x, \exists y : typeOf(x,docent) \longrightarrow heeft(x, y) \land typeOf(y,vak) $
+      \begin{itemize}
+        \item $docent$ is een constante om het type docent aan te geven
+        \item $vak$ is een constante om het type vak aan te geven
+      \end{itemize}
+      \item $ \exists x,y : typeOf(x,docent) \land \neg heeft(x,y) \land typeOf(x,vak) $
+      \item $ Tante(x,y) = is(x,vrouw) \land (neefVan(y,x) \lor nichtVan(y,x)) $
+      \begin{itemize}
+        \item $vrouw$ is een constante om het type vrouw aan te geven
+        \item $neefVan(x,y)$ geeft aan of $x$ de neef van $y$ is
+        \item $nichtVan(x,y)$ geeft aan of $x$ de nicht van $y$ is
+      \end{itemize}
+      \item $Deelt(x,y) = \exists z \in \mathbb{N}: z * x = y$
+      \item $ \forall x, \exists y: \neg heeft(x,y) \land typeOf(y,staart) $
+      \item $ \forall x, \exists y: broerVan(y,x) \longrightarrow \neg lust(x,thee) $
+      \begin{itemize}
+        \item $broerVan(x,y)$ geeft aan of $x$ de broer is van $y$
+        \item $lust(x,y)$ geeft aan of $x$ iets van het type $y$ lust
+        \item $thee$ is een constante om thee aan te geven
+      \end{itemize}
+      \item $kwadraatGetal(x) = \exists y \in \mathbb{N}: y*y = x $
+    \end{enumerate}
+
+    % einde a
+    \item $ ambigue uitspraken $
+    \begin{enumerate}[i]
+      \item
+      \begin{enumerate}[1]
+        \item $\exists x, \forall y: houdtVan(y,x)$
+        \item $\forall y, \exists x: houdtVan(y,x)$
+      \end{enumerate}
+      \begin{itemize}
+        \item $houdtVan(x,y)$ geeft aan dat $x$ van $y$ houdt
+      \end{itemize}
+      \item
+      \begin{enumerate}[1]
+        \item $\exists x,z, \forall y: houdtVan(x,z) \longrightarrow houdtVan(y,x)$
+        \item $\forall y, \exists x: houdtVan(x,y) \longrightarrow houdtVan(y,x)$
+      \end{enumerate}
+      \item
+      \begin{enumerate}[1]
+        \item $\exists Tim, y, z: heeft(y,z)\land typeOf(z,stok) \longrightarrow tiltOp(Tim,y) $
+        \item $\exists Tim, y, z: tiltOpMet(Tim,y,z) $
+      \end{enumerate}
+      \begin{itemize}
+        \item $tiltOp(x,y)$ geeft aan dat $y$ door $x$ wordt op getild
+        \item $tiltOpMet(x,y,z)$ geeft aan dat $y$ door $x$ wordt opgetild, met behulp van $z$
+        \item $stok$ is een constante die het type stok aan geeft
+      \end{itemize}
+      \item %iv
+      \begin{enumerate}[1]
+        \item $\forall x, \exists y : partners(x,y) \longrightarrow \neg klikt(x,y)$
+        \item $\exists z, \forall x, \exists y: partners(x,y) \longrightarrow klikt(z,y) $
+      \end{enumerate}
+      \begin{itemize}
+        \item $partners(x,y)$ geeft aan dat $x$ en $y$ partners zijn
+        \item $ klikt(x,y)$ geeft aan of het klikt tussen $x$ en $y$
+      \end{itemize}
+      \item % v
+      \begin{enumerate}[1]
+        \item $\forall x \exists y: kanBoekLezenBij(x,y) \land kanBoekKopenBij(x,y) \land (typeOf(y,Ako) \lor typeOf(y,Bruna)) $
+        \item $\forall x \exists y: kanBoekKopen(x) \lor (kanBoekLezenBij(x,y) \land (typeOf(y,Ako) \lor typeOf(y,Bruna)) )  $
+      \end{enumerate}
+      \begin{itemize}
+        \item $kanBoekLezenBij(x,y)$ geeft aan dat $x$ op locatie $y$ een boek kan lezen
+        \item $kanBoekKopenBij(x,y)$ geeft aan dat $x$ op locatie $y$ een boek kan kopen
+        \item $Ako$ is een constantie die een Ako winkel aangeeft
+        \item $Bruna$ is een constantie die een Bruna winkel aangeeft
+      \end{itemize}
+      \item % vi
+      \begin{enumerate}[1]
+        \item $\exists zon, maan : (onder(zon) \longrightarrow (onzichtbaar(maan) \lor onzichtbaar(zon)))$
+        \item $\exists zon, maan : (onder(zon) \longrightarrow onzichtbaar(maan))\lor onzichtbaar(maan)$
+      \end{enumerate}
+      \begin{itemize}
+        \item $onder(x)$ geeft aan of $x$ onder de horizon verdwenen is
+        \item $onzichtbaar(x)$ geeft aan of $x$ niet zichtbaar is
+      \end{itemize}
+    \end{enumerate} % einde b
+  \end{enumerate}
+
+  \subsection*{2}
+  \begin{enumerate}[a]
+    \item Opgave 2a
+    \begin{enumerate}[i]
+
+    \end{enumerate}
+  \end{enumerate}
+
+  \subsection*{3}
+  \begin{enumerate}[a]
+    \item Sudoku Variabelen:
+    \begin{itemize}
+      \item $ [r_1 .. r_9] $ voor alle rijen, deze geven aan of ze correct ingevuld zijn
+      \item $ [k_1 .. k_9] $ voor alle kolommen, deze geven aan of ze correct ingevuld zijn
+      \item $ [b_1 .. b_9] $ voor alle blokken, deze geven aan of ze correct ingevuld zijn
+      \item $ [1Op(i,j) .. 9Op(i,j)] $ deze variabelen geven de waarde aan van vakje $i,j$. Hiervan kan er slechts een per $i,j$ combinatie $true$ zijn
+    \end{itemize}
+    \item In totaal zijn er 108 variabelen $true$:
+    \begin{itemize}
+      \item $ \forall i \in [1..9] : r_i $, $b_i$ en $k_i$ zijn $true$.
+      \item Van $ [1Op(i,j) .. 9Op(i,j)] $ zijn slechts 81 variabelen $true$.
+      \item Ook geldt dat $\forall i,n \in [1..9]$ alle $n$ een keer voorkomt.
+      \item Tot slot geldt dat $\forall j,n \in [1..9]$ alle $n$ een keer voorkomt.
+    \end{itemize}
+    \item $\forall i,j \in [1..9]: value(i,j) := 1 \lor 2 \lor .. \lor 9$
+  \end{enumerate}
+
+
+
+
+
+
+\end{document}
