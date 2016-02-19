@@ -153,9 +153,9 @@
       % v
       \item
       \begin{enumerate}[1]
-        \item $\forall x,y: \neg kniptHaar(y,y) \lor \neg kniptHaar(x,y) \lor \neg typeOf(x,kapper) $
-        \item $\forall x,y: (kniptHaar(y,y) \lor kniptHaar(x,y)\land typeOf(x,kapper))$
-        \item $\forall x: \neg typeOf(x,kapper) \lor typeOf(x,persoon) $
+        \item $ (\neg kniptHaar(y,y) \lor \lnot kniptHaar(x,y)) \land (\lneg kniptHaar(y,y) \lor typeOf(x,kapper)) $
+        \item $ (kniptHaar(y,y) \lor kniptHaar(x, y)) \land (kniptHaar(y,y) \lor typeOf(x,kapper))$
+        \item $ \neg typeOf(x,kapper) \lor typeOf(x,persoon) $
       \end{enumerate}
       % vi
       \item
