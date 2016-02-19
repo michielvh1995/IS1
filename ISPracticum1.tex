@@ -196,6 +196,7 @@
       \item $ [b_1 .. b_9] $ voor alle blokken, deze geven aan of ze correct ingevuld zijn
       \item $ [1Op(i,j) .. 9Op(i,j)] $ deze variabelen geven de waarde aan van vakje $i,j$. Hiervan kan er slechts een per $i,j$ combinatie $true$ zijn
     \end{itemize}
+    % b
     \item In totaal zijn er 108 variabelen $true$:
     \begin{itemize}
       \item $ \forall i \in [1..9] : r_i $, $b_i$ en $k_i$ zijn $true$.
@@ -203,8 +204,18 @@
       \item Ook geldt dat $\forall i,n \in [1..9]$ alle $n$ een keer voorkomt.
       \item Tot slot geldt dat $\forall j,n \in [1..9]$ alle $n$ een keer voorkomt.
     \end{itemize}
-    \item $\forall i,j \in [1..9]: 1Op(i,j) \lor .. \lor 9Op(i,j) $
-    \item Voor elk blok: $  $
+    % c
+    \item $\forall i,j \in [1..9]: 1Op(i,j) xor .. xor 9Op(i,j) $
+    % d
+    \item Per blok met cellen tussen $(i_{min},j_{min})$ en $(i_{max},j_{max})$
+    $ \exists [i1..i3]\in(i_{min} .. i_{max}), [j1..j3]\in (j_{min} .. j_{max}), : 1Op(i1,j1) \land .. \land 9Op(i3,j3) \land i1 \neq i2 \land i3 \neq i1 \land i2 \neq i3
+    \land j1 \neq j2 \land j3 \neq j1 \land j2 \neq j3 $ % alle getallen 1 keer
+    % e
+    \item Per rij $j$ : $ [i1..i9] : 1Op(i1,j) \land .. \land 9Op(i1,j) \land i1 \neq i2 \land .. \land i8 \neq i9 $
+    % f
+    \item Per kolom $i$ : $[j1..j9] : 1Op(i,j1) \land .. \land 9Op(i,j9) \land j1 \neq j2 \land .. \land j8 \neq j9 $
+    % g
+    \item Taal!? Over welke fucking taal hebben ze het!?
   \end{enumerate}
 
 
