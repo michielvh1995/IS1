@@ -15,41 +15,56 @@
   \begin{enumerate}[a]
     \item Herschrijven
     \begin{enumerate}[i]
-      \item $ \forall vis : typeOf(vis, zoogdier) $
+      \item $ \forall x : typeOf(x,vis) \longrightarrow typeOf(vis, zoogdier) $
       \begin{itemize}
         \item $typeOf(x,y) $ geeft aan of $x$ van het type $y$ is (hier: of $vis$ een $zoogdier$ is)
         \item $zoogdier$ is een constante voor het type zoogdier
+        \item $vis$ is een constante voor het type vis
       \end{itemize}
-      \item $ \forall vis, \exists y : heeft(vis, y) \land typeOf(y,staart) $
+      % ii
+      \item $ \forall x, \exists y : typeOf(x,vis) \longrightarrow (heeft(x, y) \land typeOf(y,staart)) $
       \begin{itemize}
         \item $heeft(x,y) $ geeft aan of $x$ $y$ heeft
         \item $staart$ is een constante om het type staart aan te geven
       \end{itemize}
+      % iii
       \item $\forall x : heeft(x,griep) \longrightarrow heeft(x,koorts) $
       \begin{itemize}
         \item $griep$ is een constante om griep aan te geven
         \item $koorts$ is een constante om koorts aan te geven
-      \end{itemize} % iv
-      \item $ \forall x, \exists y : typeOf(x,docent) \longrightarrow heeft(x, y) \land typeOf(y,vak) $
+      \end{itemize}
+      % iv
+      \item $ \forall x, \exists y : typeOf(x,docent) \longrightarrow (heeft(x, y) \land typeOf(y,vak)) $
       \begin{itemize}
         \item $docent$ is een constante om het type docent aan te geven
         \item $vak$ is een constante om het type vak aan te geven
       \end{itemize}
+      % v
       \item $ \exists x,y : typeOf(x,docent) \land \neg heeft(x,y) \land typeOf(x,vak) $
-      \item $ Tante(x,y) = is(x,vrouw) \land (neefVan(y,x) \lor nichtVan(y,x)) $
+      % vi
+      \item $ Tante(x,y) = typeOf(x,vrouw) \land (neefVan(y,x) \lor nichtVan(y,x)) $
       \begin{itemize}
         \item $vrouw$ is een constante om het type vrouw aan te geven
         \item $neefVan(x,y)$ geeft aan of $x$ de neef van $y$ is
         \item $nichtVan(x,y)$ geeft aan of $x$ de nicht van $y$ is
       \end{itemize}
+      % vii
       \item $Deelt(x,y) = \exists z \in \mathbb{N}: z * x = y$
-      \item $ \forall x, \exists y: \neg heeft(x,y) \land typeOf(y,staart) $
+      % viii
+      \item $ \forall x, \exists y: typeOf(x,paart) \longrightarrow (\neg heeft(x,y) \land typeOf(y,staart)) $
+      \begin{itemize}
+        \item $paard$ is een constante om het type paard aan te geven
+      \end{itemize}
+      % ix : geen paard heeft geen staart -> alle paarden hebben een staart
+      \item $ \forall x, \exists y: typeOf(x,paart) \longrightarrow (heeft(x,y) \land typeOf(y,staart)) $
+      % x
       \item $ \forall x, \exists y: broerVan(y,x) \longrightarrow \neg lust(x,thee) $
       \begin{itemize}
         \item $broerVan(x,y)$ geeft aan of $x$ de broer is van $y$
         \item $lust(x,y)$ geeft aan of $x$ iets van het type $y$ lust
         \item $thee$ is een constante om thee aan te geven
       \end{itemize}
+      % ix
       \item $kwadraatGetal(x) = \exists y \in \mathbb{N}: y*y = x $
     \end{enumerate}
 
@@ -58,21 +73,21 @@
     \begin{enumerate}[i]
       \item
       \begin{enumerate}[1]
-        \item $\exists x, \forall y: houdtVan(y,x)$
-        \item $\forall y, \exists x: houdtVan(y,x)$
+        \item Er is een persoon, en iedereen houdt van hem/haar \\ $\exists x, \forall y: houdtVan(y,x)$
+        \item Er is voor iedereen iemand om van te houden \\  $\forall y, \exists x: houdtVan(y,x)$
       \end{enumerate}
       \begin{itemize}
         \item $houdtVan(x,y)$ geeft aan dat $x$ van $y$ houdt
       \end{itemize}
       \item
       \begin{enumerate}[1]
-        \item $\exists x,z, \forall y: houdtVan(x,z) \longrightarrow houdtVan(y,x)$
-        \item $\forall y, \exists x: houdtVan(x,y) \longrightarrow houdtVan(y,x)$
+        \item Er is voor iedereen een persoon om van te houden en dit persoon houdt van hem/haar \\  $\exists! z \exists x \forall y: houdtVan(x,z) \longrightarrow houdtVan(y,x)$
+        \item Voor iedereen is er een persoon om van te houden en dit persoon houdt ook van hem/haar \\ $\forall y \exists x: houdtVan(x,y) \longrightarrow houdtVan(y,x)$
       \end{enumerate}
       \item
       \begin{enumerate}[1]
-        \item $\exists Tim, y, z: heeft(y,z)\land typeOf(z,stok) \longrightarrow tiltOp(Tim,y) $
-        \item $\exists Tim, y, z: tiltOpMet(Tim,y,z) $
+        \item Tim tilt de jongen die een stok vast heeft op  \\ $\exists Tim, y, z: heeft(y,z)\land typeOf(z,stok) \longrightarrow tiltOp(Tim,y) $
+        \item Tim gebruikt de stok om de jongen op te tillen \\ $\exists Tim, y, z: tiltOpMet(Tim,y,z) $
       \end{enumerate}
       \begin{itemize}
         \item $tiltOp(x,y)$ geeft aan dat $y$ door $x$ wordt op getild
@@ -81,8 +96,8 @@
       \end{itemize}
       \item %iv
       \begin{enumerate}[1]
-        \item $\forall x, \exists y : partners(x,y) \longrightarrow \neg klikt(x,y)$
-        \item $\exists z, \forall x, \exists y: partners(x,y) \longrightarrow klikt(z,y) $
+        \item Er is geen partner-koppel waar tussen het klikt \\ $\forall x, \exists y : partners(x,y) \longrightarrow \neg klikt(x,y)$
+        \item Er is een persoon waarmee niet een persoon, dat een partner is van iemand, klikt \\ $\exists z, \forall x, \exists y: partners(x,y) \longrightarrow klikt(z,y) $
       \end{enumerate}
       \begin{itemize}
         \item $partners(x,y)$ geeft aan dat $x$ en $y$ partners zijn
@@ -90,8 +105,8 @@
       \end{itemize}
       \item % v
       \begin{enumerate}[1]
-        \item $\forall x \exists y: kanBoekLezenBij(x,y) \land kanBoekKopenBij(x,y) \land (typeOf(y,Ako) \lor typeOf(y,Bruna)) $
-        \item $\forall x \exists y: kanBoekKopen(x) \lor (kanBoekLezenBij(x,y) \land (typeOf(y,Ako) \lor typeOf(y,Bruna)) )  $
+        \item Iedereen kan zowel boeken kopen als boeken lezen bij Bruna of Ako \\ $\forall x \exists y: kanBoekLezenBij(x,y) \land kanBoekKopenBij(x,y) \land (typeOf(y,Ako) \lor typeOf(y,Bruna)) $
+        \item Iedereen kan boeken kopen bij Bruna of boeken lezen bij de Ako. \\ $\forall x \exists y: (kanBoekKopenBij(x,y) \land typeOf(y,Bruna)) \lor ((kanBoekLezenBij(x,y) \land  typeOf(y,Ako)) )  $
       \end{enumerate}
       \begin{itemize}
         \item $kanBoekLezenBij(x,y)$ geeft aan dat $x$ op locatie $y$ een boek kan lezen
@@ -101,8 +116,8 @@
       \end{itemize}
       \item % vi
       \begin{enumerate}[1]
-        \item $\exists zon, maan : (onder(zon) \longrightarrow (onzichtbaar(maan) \lor onzichtbaar(zon)))$
-        \item $\exists zon, maan : (onder(zon) \longrightarrow onzichtbaar(maan))\lor onzichtbaar(maan)$
+        \item Als de zon onder is de maan of de zon onzichtbaar, of beide \\ $\exists zon, maan : (onder(zon) \longrightarrow (onzichtbaar(maan) \lor onzichtbaar(zon)))$
+        \item De zon kan onzichtbaar zijn, maar als hij onder is is de maan onzichtbaar \\ $\exists zon, maan : (onder(zon) \longrightarrow onzichtbaar(maan))\lor onzichtbaar(zon)$
       \end{enumerate}
       \begin{itemize}
         \item $onder(x)$ geeft aan of $x$ onder de horizon verdwenen is
@@ -113,10 +128,40 @@
 
   \subsection*{2}
   \begin{enumerate}[a]
-    \item Opgave 2a
+    \item
     \begin{enumerate}[i]
-
+      \item
+      \begin{enumerate}[1]
+        \item $\forall y, x : kniptHaar(y,y) \longrightarrow \neg (kniptHaar(x,y) \land typeOf(x,kapper)) $
+        \begin{itemize}
+          \item $kniptHaar(x,y)$ geeft aan dat $x$ de haren van $y$ knipt
+          \item $kapper$ is een constante om het type kapper aan te geven
+        \end{itemize}
+        \item $\forall x,y : \neg kniptHaar(y,y) \longrightarrow (kniptHaar(x,y) \land typeOf(x,kapper)) $
+        \item $\forall x: typeOf(x,kapper) \longrightarrow typeOf(x,persoon)$
+        \begin{itemize}
+          \item $persoon$ is een constante om het type persoon aan te geven
+        \end{itemize}
+      \end{enumerate}
+      % ii
+      \item $\forall x: \neg typeOf(x,kapper)$
+      % iii
+      \item Formules (1), (2) en (3)
+      % iv
+      \item Door eerste alle formules die gebruikt worden om te zetten naar CNF. Vervolgens moet gelden dat, wilt de formule kloppen, dan moet in elk geval een deel kloppen.
+      Indien dit niet zo is heb je een tegenspraak; je neemt immers aan dat het wel klopt voor je begint.
+      % v
+      \item
+      \begin{enumerate}[1]
+        \item $\forall x,y: \neg kniptHaar(y,y) \lor \neg kniptHaar(x,y) \lor \neg typeOf(x,kapper) $
+        \item $\forall x,y: (kniptHaar(y,y) \lor kniptHaar(x,y)\land typeOf(x,kapper))$
+        \item $\forall x: \neg typeOf(x,kapper) \lor typeOf(x,persoon) $
+      \end{enumerate}
+      % vi
+      \item
     \end{enumerate}
+    \item 2b
+
   \end{enumerate}
 
   \subsection*{3}
@@ -136,6 +181,7 @@
       \item Tot slot geldt dat $\forall j,n \in [1..9]$ alle $n$ een keer voorkomt.
     \end{itemize}
     \item $\forall i,j \in [1..9]: 1Op(i,j) \lor .. \lor 9Op(i,j) $
+    \item Voor elk blok: $  $
   \end{enumerate}
 
 
