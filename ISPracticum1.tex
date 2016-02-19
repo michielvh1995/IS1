@@ -4,6 +4,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{fullpage}
+\usepackage{soul}
 
 \title{Practicum IS 1}
 \author{}
@@ -132,33 +133,55 @@
     \begin{enumerate}[i]
       \item
       \begin{enumerate}[1]
-        \item $\forall y, x : kniptHaar(y,y) \longrightarrow \neg (kniptHaar(x,y) \land typeOf(x,kapper)) $
+        %\item $\forall y, x : kniptHaar(y,y) \longrightarrow \neg (kniptHaar(x,y) \land typeOf(x,kapper)) $
+        \item $  \forall x, y: \lnot (typeOf(x, kapper) \land typeOf(y,persoon) \land knipt(x,y) \land knipt(y,y)) $
         \begin{itemize}
-          \item $kniptHaar(x,y)$ geeft aan dat $x$ de haren van $y$ knipt
-          \item $kapper$ is een constante om het type kapper aan te geven
+          \item $knipt(x,y)$ geeft aan dat $x$ de haren van $y$ knipt.
+          \item $kapper$ is een constante om het type kapper aan te geven.
+          \item $persoon$ is een constante om het type persoon aan te geven.
         \end{itemize}
-        \item $\forall x,y : \neg kniptHaar(y,y) \longrightarrow (kniptHaar(x,y) \land typeOf(x,kapper)) $
-        \item $\forall x: typeOf(x,kapper) \longrightarrow typeOf(x,persoon)$
-        \begin{itemize}
-          \item $persoon$ is een constante om het type persoon aan te geven
-        \end{itemize}
+        %\item $\forall x,y : \neg kniptHaar(y,y) \longrightarrow (kniptHaar(x,y) \land typeOf(x,kapper)) $
+        \item $ \forall x, y: typeOf(x, kapper) \land typeOf(y, persoon) \land \lnot knipt(y, y) \longrightarrow knipt(x, y) $
+        %\item $\forall x: typeOf(x,kapper) \longrightarrow typeOf(x,persoon)$
+        \item $ \forall x: typeOf(x, kapper) \longrightarrow typeOf(x, persoon)$
       \end{enumerate}
       % ii
       \item $\forall x: \neg typeOf(x,kapper)$
       % iii
       \item Formules (1), (2) en (3)
       % iv
-      \item Door eerste alle formules die gebruikt worden om te zetten naar CNF. Vervolgens moet gelden dat, wilt de formule kloppen, dan moet in elk geval een deel kloppen.
-      Indien dit niet zo is heb je een tegenspraak; je neemt immers aan dat het wel klopt voor je begint.
+      \item We schrijven eerst alle formules om naar CNF equivalenten. Vervolgens plakken we al die formules aan elkaar met $\land$ -tekens en
+      gaan we op zoek naar literals die tegenstrijdig zijn. Op deze manier kan je concluderen dat de waarde van de literals niet uit maakt en ze verwijderen
+      uit de gecombineerde formule. Dit proces gaat door tot dat we de formule die we proberen af te leiden over houden.
       % v
       \item
       \begin{enumerate}[1]
-        \item $ (\neg kniptHaar(y,y) \lor \lnot kniptHaar(x,y)) \land (\lneg kniptHaar(y,y) \lor typeOf(x,kapper)) $
-        \item $ (kniptHaar(y,y) \lor kniptHaar(x, y)) \land (kniptHaar(y,y) \lor typeOf(x,kapper))$
-        \item $ \neg typeOf(x,kapper) \lor typeOf(x,persoon) $
+        %\item $ (\neg kniptHaar(y,y) \lor \lnot kniptHaar(x,y)) \land (\lneg kniptHaar(y,y) \lor typeOf(x,kapper)) $
+        \item $\lnot typeOf(x, kapper) \lor \lnot typeOf(y, persoon) \lor \lnot knipt(x, y) \lor \lnot knipt(y, y)$
+        %\item $ (kniptHaar(y,y) \lor kniptHaar(x, y)) \land (kniptHaar(y,y) \lor typeOf(x,kapper))$
+        \item $ \lnot typeOf(x, kapper) \lor \lnot typeOf(y, persoon) \lor knipt(y, y) \lor knipt(x, y) $
+        \item $ \lnot typeOf(x,kapper) \lor typeOf(x,persoon) $
       \end{enumerate}
       % vi
-      \item
+      \item Zoals gezegd zetten we alles onder elkaar:
+      \begin{enumerate}[1]
+        \item $\lnot typeOf(x, kapper) \lor \lnot typeOf(y, persoon) \lor \lnot knipt(x, y) \lor \lnot knipt(y, y)$
+        \item $ \lnot typeOf(x, kapper) \lor \lnot typeOf(y, persoon) \lor knipt(y, y) \lor knipt(x, y) $
+        \item $ \lnot typeOf(x,kapper) \lor typeOf(x,persoon) $
+      \end{enumerate}
+      \item Vervolgens gaan we overbodigen, ofwel tegenspraak wegstrepen. We beginnen bij knipt:
+      \begin{enumerate}[1]
+        \item $\lnot typeOf(x, kapper) \lor \lnot typeOf(y, persoon) \lor$\st{$ \lnot knipt(x, y) \lor \lnot knipt(y, y)$}
+        \item $ \lnot typeOf(x, kapper) \lor \lnot typeOf(y, persoon) \lor$\st{$knipt(y, y) \lor knipt(x, y)$}
+        \item $ \lnot typeOf(x,kapper) \lor typeOf(x,persoon) $
+      \end{enumerate}
+      \item Dit kunnen we nog een keer doen, deze keer kijken we naar typeOf met als 2e argument "persoon" omdat we uiteindelijk kapper willen overhouden.
+      \begin{enumerate}[1]
+        \item $ \lnot typeOf(x, kapper) \lor $\st{$\lnot typeOf(y, persoon)$}$ \lor$\st{$ \lnot knipt(x, y) \lor \lnot knipt(y, y)$}
+        \item $ \lnot typeOf(x, kapper) \lor $\st{$\lnot typeOf(y, persoon)$}$ \lor$\st{$knipt(y, y) \lor knipt(x, y)$}
+        \item $ \lnot typeOf(x,kapper) $\st{$\lor typeOf(x,persoon) $}
+      \end{enumerate}
+      \item We zien dat we nu alleen nog de af te leiden formule over hebben (in CNF), dus de resolutie heeft gewerkt.
     \end{enumerate}
     \item 2b
 
